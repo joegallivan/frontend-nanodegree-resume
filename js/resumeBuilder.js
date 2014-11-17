@@ -26,5 +26,20 @@ var bio = {
 		}
 };
 $("#header").prepend(bio.fullBio());
+// work object
+var work = {};
+work.position = "Learning Facilitator";
+work.employer = "Edge Hill University";
+work.yearsWorked = 8;
+work.place = "Ormskirk, UK";
+//$("#main").append(HTMLworkStart);
+$("#main").append(HTMLworkTitle.replace("%data%",work["position"]))
+// education object
+var education = {};
+education["lastSchool"] = "King Edwards VI Aston";
+education["yearsAttended"] = 7;
+education["schoolsCity"] = "Birmingham, UK";
+$("#main").append(HTMLschoolName.replace("%data%",education.lastSchool));
+
 
 
