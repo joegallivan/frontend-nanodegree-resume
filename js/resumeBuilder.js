@@ -35,11 +35,34 @@ work.place = "Ormskirk, UK";
 //$("#main").append(HTMLworkStart);
 $("#main").append(HTMLworkTitle.replace("%data%",work["position"]))
 // education object
-var education = {};
-education["lastSchool"] = "King Edwards VI Aston";
-education["yearsAttended"] = 7;
-education["schoolsCity"] = "Birmingham, UK";
-$("#main").append(HTMLschoolName.replace("%data%",education.lastSchool));
+
+//$("#main").append(HTMLschoolName.replace("%data%",education.lastSchool));
+var education = {
+	"schools" : [
+	{
+		"name": "Liverpool John Moores University",
+		"city": "Liverpool, UK",
+		"degree": "MBA",
+		"major" : ["Business Studies"],
+		"graduation" : 1995
+	},
+	{
+		"name": "Liverpool Polytechnic",
+		"city": "Liverpool, UK",
+		"degree": "BSC(Econ)",
+		"major": ["Economics"],
+		"graduation" : 1974
+	}
+	],
+	"onlineCourses" : [
+	{
+		"title": "JavaScript Syntax",
+		"school": "Udacity",
+		"date" : 2014,
+		"url" : "http://www.udacity.com/course/ud804"
+	}
+	]
+};
 
 
 
