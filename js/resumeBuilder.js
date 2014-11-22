@@ -135,7 +135,24 @@ var projects = {
 	]
 };
 
-// Now add formatted bio details to the CV
+// Now add formatted skills details to the CV
+// first, personal details except skills
+var FormattedBio = {
+	formattedName:HTMLheaderName.replace("%data%","Joe Gallivan"),
+	formattedRole:HTMLheaderRole.replace("%data%","Learning Facilitator"),
+	formattedEmail:HTMLemail.replace("%data%","joegallivan@talktalk.net"),
+	formattedGithub:HTMLgithub.replace("%data%","joegallivan"),
+	formattedBioPic:HTMLbioPic.replace("%data%","js/me.jpg"),
+	formattedWelcomeMsg:HTMLWelcomeMsg.replace("%data%","Welcome to my resume"),
+	fullBio:function() {
+	    return this.formattedName +
+		this.formattedRole + this.formattedBioPic +
+		this.formattedEmail  + this.formattedGithub +
+		this.formattedWelcomeMsg;
+		}
+};
+$("#header").prepend(FormattedBio.fullBio());
+// Next the skills info
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
 	for (var i=0; i<bio.skills.length; i++) {
@@ -151,7 +168,14 @@ for (thisOne in work.jobs) {
 	var job = work.jobs[thisOne];
 	var employer = HTMLworkEmployer.replace("%data%",job.employer);
 	var title = HTMLworkTitle.replace("%data%",job.title);
-	$(".work-entry:last").append(employer + title);
+	var located = HTMLworkLocation.replace("%data%","Based at " + job.location + "  .");
+	var dateStart = HTMLworkDates.replace("%data%","Date Started " + job.dateStarted + " -");
+	var dateEnd = HTMLworkDates.replace("%data%","- Date Finished "+job.dateFinished);
+	var dates = dateStart + dateEnd;
+	var description = HTMLworkDescription.replace("%data%",job.description);
+	$(".work-entry:last").append(employer + title + located + dates + description);
+	
+	
 }
 	
 
