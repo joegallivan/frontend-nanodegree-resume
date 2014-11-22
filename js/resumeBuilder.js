@@ -109,31 +109,50 @@ var projects = {
 		"dateStarted" : 2004,
 		"dateCompleted" : 2006,
 		"description" : "Manage the migration of the organisation's client computers to Windows XP",
-		"url" : "To be added later"
+		"urls" : ["To be added later"]
 	},
 	{
 		"title" : "Integrated Financial and Administrative Systems",
 		"dateStarted" : 1997,
 		"dateCompleted" : 2000,
 		"description" : "Manage parts of the migration of the organisation's financial, accounting and administrative systems to Oracle Applications",
-		"url" : "To be added later"
+		"urls" : ["To be added later"]
 	},
 	{
 		"title" : "Centralised Support",
 		"dateStarted" : 2000,
 		"dateCompleted" : 2002,
 		"description" : "Manage a project to reorganise the maintenance and support of the organisation's major applications",
-		"url" : "To be added later"
+		"urls" : ["To be added later"]
 	},
 	{
 		"title" : "Corporate Charging",
 		"dateStarted" : 1992,
 		"dateCompleted" : 1994,
 		"description" : "Manage the testing andimplementation of a bespoke application to charge corporate bank customers",
-		"url" : "To be added later"
+		"urls" : ["To be added later"]
 	}
 	]
 };
 
+// Now add formatted bio details to the CV
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	for (var i=0; i<bio.skills.length; i++) {
+		    var formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
+		    $("#skills").append(formattedSkill);
+		    
+	}
+}
+
+// Lession 2.3 - work objects in for ..in loop
+for (thisOne in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	var job = work.jobs[thisOne];
+	var employer = HTMLworkEmployer.replace("%data%",job.employer);
+	var title = HTMLworkTitle.replace("%data%",job.title);
+	$(".work-entry:last").append(employer + title);
+}
+	
 
 
