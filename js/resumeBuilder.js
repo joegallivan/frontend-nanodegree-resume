@@ -109,28 +109,28 @@ var projects = {
 		"dateStarted" : 2004,
 		"dateCompleted" : 2006,
 		"description" : "Manage the migration of the organisation's client computers to Windows XP",
-		"urls" : ["To be added later"]
+		"urls" : ["images/computermonitor.jpg"]
 	},
 	{
 		"title" : "Integrated Financial and Administrative Systems",
 		"dateStarted" : 1997,
 		"dateCompleted" : 2000,
 		"description" : "Manage parts of the migration of the organisation's financial, accounting and administrative systems to Oracle Applications",
-		"urls" : ["To be added later"]
+		"urls" : ["images/computermonitor.jpg"]
 	},
 	{
 		"title" : "Centralised Support",
 		"dateStarted" : 2000,
 		"dateCompleted" : 2002,
 		"description" : "Manage a project to reorganise the maintenance and support of the organisation's major applications",
-		"urls" : ["To be added later"]
+		"urls" : ["images/computermonitor.jpg"]
 	},
 	{
 		"title" : "Corporate Charging",
 		"dateStarted" : 1992,
 		"dateCompleted" : 1994,
 		"description" : "Manage the testing andimplementation of a bespoke application to charge corporate bank customers",
-		"urls" : ["To be added later"]
+		"urls" : ["images/computermonitor.jpg"]
 	}
 	]
 };
@@ -181,7 +181,7 @@ for (thisOne in work.jobs) {
 }
 };
 displayWork();	
-
+/*
 // Collect the clicks as per Lesson 2.7
 $(document).click(function(loc) {
 	logClicks(loc.pageX,loc.pageY);
@@ -193,4 +193,19 @@ var inName = function() {
 	var pos = bio.name.search(" "); // position of space between 1st name & surname
 	return bio.name.slice(0,pos) + " " + bio.name.slice(pos+1,bio.name.length).toUpperCase();
 };
-
+*/
+// Show projects - function inside object - Lesson 2.11
+projects.display = function () {
+	for (project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+		var entry = projects.projects[project]; // project object
+		$(".project-entry:last").append(HTMLprojectTitle.replace("%data%",entry.title));
+		$(".project-entry:last").append(HTMLprojectDates.replace("%data%","Date Started " + entry.dateStarted));
+		$(".project-entry:last").append(HTMLprojectDates.replace("%data%"," ---Date Completed " + entry.dateCompleted));
+		$(".project-entry:last").append(HTMLprojectDescription.replace("%data%",entry.description));
+        for (url in entry.urls) {
+        	$(".project-entry:last").append(HTMLprojectImage.replace("%data%",entry.urls[url]));
+        }
+	}
+};
+projects.display();
