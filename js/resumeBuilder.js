@@ -138,16 +138,17 @@ var projects = {
 // Now add formatted skills details to the CV
 // first, personal details except skills
 var FormattedBio = {
-	formattedName:HTMLheaderName.replace("%data%","Joe Gallivan"),
-	formattedRole:HTMLheaderRole.replace("%data%","Learning Facilitator"),
-	formattedEmail:HTMLemail.replace("%data%","joegallivan@talktalk.net"),
-	formattedGithub:HTMLgithub.replace("%data%","joegallivan"),
+	formattedName:HTMLheaderName.replace("%data%",bio.name),
+	formattedRole:HTMLheaderRole.replace("%data%",bio.role),
+	formattedEmail:HTMLemail.replace("%data%",bio.contacts["email"]),
+	formattedGithub:HTMLgithub.replace("%data%",bio.contacts.github),
+	formattedLocation:HTMLlocation.replace("%data%",bio.contacts.location),
 	formattedBioPic:HTMLbioPic.replace("%data%","js/me.jpg"),
-	formattedWelcomeMsg:HTMLWelcomeMsg.replace("%data%","Welcome to my resume"),
+	formattedWelcomeMsg:HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage),
 	fullBio:function() {
 	    return this.formattedName +
 		this.formattedRole + this.formattedBioPic +
-		this.formattedEmail  + this.formattedGithub +
+		this.formattedEmail  + this.formattedGithub + this.formattedLocation +
 		this.formattedWelcomeMsg;
 		}
 };
@@ -162,7 +163,8 @@ if (bio.skills.length > 0) {
 	}
 }
 
-// Lession 2.3 - work objects in for ..in loop
+// Lession 2.5 - work objects bundled into a function
+var displayWork = function() {
 for (thisOne in work.jobs) {
 	$("#workExperience").append(HTMLworkStart);
 	var job = work.jobs[thisOne];
@@ -177,6 +179,10 @@ for (thisOne in work.jobs) {
 	
 	
 }
-	
+};
+displayWork();	
 
-
+// Collect the clicks as per Lesson 2.7
+$(document).click(function(loc) {
+	logClicks(loc.pageX,loc.pageY);
+});
