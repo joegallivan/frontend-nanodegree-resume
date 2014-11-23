@@ -186,3 +186,11 @@ displayWork();
 $(document).click(function(loc) {
 	logClicks(loc.pageX,loc.pageY);
 });
+
+// Internationalise the surname as per Lesson 2.9
+$("#main").append(internationalizeButton);
+var inName = function() {
+	var pos = bio.name.search(" "); // position of space between 1st name & surname
+	return bio.name.slice(0,pos) + " " + bio.name.slice(pos+1,bio.name.length).toUpperCase();
+};
+
