@@ -173,6 +173,35 @@ function initializeMap() {
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
+      // Set up a text array for the towns
+      var townsinfo = ["Fleetwood: A small town on the Fylde coast"+
+                        " in Lancashire. Formerly famous for fishing, "+
+                        "it is now mainly a tourist town.",
+                        "Southport: A small town at the north end of Merseyside"+
+                        " on the Sefton coast. It is a popular tourist location "+
+                        "famous for its long Victorian facade on Lord St.",
+                        "Liverpool: A large city which is famous all over the world. "+
+                        "It is especially well known for its waterfront, its music especially the Beatles"+
+                        ", its football clubs and the unique accent of its people, the Scousers.",
+                        "Rochdale: A medium sized town in Greater Manchester. "+
+                        "It was formerly a busy cotton processing town.",
+                        "Ormskirk: A small town in south west Lancashire. "+
+                        "It has a weekly market and a sizeable student population "+
+                        "due to the presence of Edge Hill University."];
+     // get the current town
+     var thisTown = infoWindow.content.slice(0,infoWindow.content.indexOf(","));
+     // then locate it in the towns list just created above.
+     for (var townPos in townsinfo) {
+      var town = townsinfo[townPos];
+      var townName = town.slice(0,town.indexOf(":"));
+      if (thisTown == townName) {
+        infoWindow.content = town.slice(town.indexOf(":")+1);
+        infoWindow.open(map,marker); // now open it
+        break; // exit the for loop
+
+      }
+     }
+
     });
 
     // this is where the pin actually gets added to the map.
