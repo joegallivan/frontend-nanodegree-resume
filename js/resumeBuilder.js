@@ -5,6 +5,7 @@ var bio = {
 	    "name" : "Joe Gallivan",
 	    "role" : "Learning Facilitator",
 	    "welcomeMessage" : "Welcome to my CV",
+	    "bioPic" :"images/fry.jpg",
 	    "contacts" : {
 	    	"mobile" : "fill in later",
 	    	"email" : "joegallivan@talktalk.net",
@@ -70,7 +71,7 @@ var education = {
 	{
 		"name": "Liverpool Polytechnic",
 		"location": "Liverpool, UK",
-		"degree": "BSC(Econ)",
+		"degree": "BSc(Econ)",
 		"majors": ["Economics"],
 		"dateStarted" : 1971,
 		"dateGraduated" : 1974,
@@ -129,7 +130,7 @@ var projects = {
 		"title" : "Corporate Charging",
 		"dateStarted" : 1992,
 		"dateCompleted" : 1994,
-		"description" : "Manage the testing andimplementation of a bespoke application to charge corporate bank customers",
+		"description" : "Manage the testing and implementation of a bespoke application to charge corporate bank customers",
 		"urls" : ["images/computermonitor.jpg"]
 	}
 	]
@@ -143,7 +144,7 @@ var FormattedBio = {
 	formattedEmail:HTMLemail.replace("%data%",bio.contacts["email"]),
 	formattedGithub:HTMLgithub.replace("%data%",bio.contacts.github),
 	formattedLocation:HTMLlocation.replace("%data%",bio.contacts.location),
-	formattedBioPic:HTMLbioPic.replace("%data%","js/me.jpg"),
+	formattedBioPic:HTMLbioPic.replace("%data%",bio.bioPic),
 	formattedWelcomeMsg:HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage),
 	fullBio:function() {
 	    return this.formattedName +
@@ -212,3 +213,30 @@ projects.display();
 
 // Lesson 2.13 - Add the google map to the bottom of the CV.
 $("#mapDiv").append(googleMap);
+
+// final section - display education Lesson 2.14
+education.display = function () {
+	for (HEI in education.schools) {
+		$("#education").append(HTMLschoolStart);
+		var entry = education.schools[HEI]; // university object
+		$(".education-entry:last").append(HTMLschoolName.replace("%data%",entry.name));
+		$(".education-entry:last").append(HTMLschoolDegree.replace("%data%","-- Degree:" + entry.degree));
+		$(".education-entry:last").append(HTMLschoolDates.replace("%data%","Date Started " + entry.dateStarted));
+		$(".education-entry:last").append(HTMLschoolDates.replace("%data%","---Date Graduated " + entry.dateGraduated));
+		$(".education-entry:last").append(HTMLschoolLocation.replace("%data%","---" + entry.location));
+        for (major in entry.majors) {
+        	$(".education-entry:last").append(HTMLschoolMajor.replace("%data%",entry.majors[major]));
+        }
+        $(".education-entry:last").append(HTMLonlineURL.replace("%data%",entry.url));
+	}
+	for (MOOC in education.onlineCourses) {
+		$("#education2").append(HTMLschoolStart);
+		var entry = education.onlineCourses[MOOC]; // university object
+		$(".education-entry:last").append(HTMLonlineTitle.replace("%data%",entry.title));
+		$(".education-entry:last").append(HTMLonlineSchool.replace("%data%"," -- From   " + entry.school));
+		$(".education-entry:last").append(HTMLonlineDates.replace("%data%","Date Started " + entry.dateStarted));
+		$(".education-entry:last").append(HTMLonlineDates.replace("%data%","---Date Completed " + entry.dateCompleted));
+		$(".education-entry:last").append(HTMLonlineURL.replace("%data%",entry.url));
+   	}
+};
+education.display();
