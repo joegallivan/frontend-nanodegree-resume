@@ -209,3 +209,6 @@ projects.display = function () {
 	}
 };
 projects.display();
+
+// Lesson 2.13 - Add the google map to the bottom of the CV.
+$("#mapDiv").append(googleMap);
